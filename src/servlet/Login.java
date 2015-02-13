@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +40,16 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Login.java");
-		
+		HttpServletResponse oldResponse = response;
 		response = sc.authorizeUser(request, response);
-		
-		//Return to startpage
+		if(response != null){
+			System.out.println("Response not null");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/SmallProject/Index");
+			rd.forward(request, response);
+		}else{
+			System.out.println("Response null");
+			oldResponse.sendRedirect("/");
+		}
 		System.out.println("Auth");
 	}
 

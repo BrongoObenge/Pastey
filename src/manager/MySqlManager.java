@@ -41,10 +41,10 @@ public class MySqlManager {
 			Statement statement = conn.createStatement();
 			statement.execute(query);
 			result = statement.getResultSet();
+			return result;
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			this.closeDb(conn);
+		}finally{ 
 		}
 		return result;
 	}

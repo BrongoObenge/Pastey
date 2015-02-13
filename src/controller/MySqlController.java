@@ -16,6 +16,7 @@ public class MySqlController {
 		
 		Boolean returnVal = false;
 		try{
+			result.first();
 			if(result.getString("password").equals(pass))
 				returnVal = true;
 			}catch (Exception e){
@@ -40,6 +41,7 @@ public class MySqlController {
 	public User getUserByUsername(String username){
 		ResultSet rs = mysqlMan.getUserByUsername(username);
 		try{
+			rs.first();
 			int iduser = rs.getInt("iduser"); 
 			int groupid = rs.getInt("groupid");
 			

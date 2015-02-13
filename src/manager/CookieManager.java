@@ -19,16 +19,22 @@ public class CookieManager {
 	}
 	public String checkUidCookie(HttpServletRequest request){
 		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies){
+		try{
+			for(Cookie cookie : cookies){
 			System.out.println(cookie.getName());
-		    if(cookie.getName() == "uid")
+		    if(cookie.getName().equals("uid"))
 		    	return cookie.getName();
+			}
+		}catch(Exception e){
+			return null;
 		}
 		return null;
 	}
 	
 	public HttpServletResponse setCookiesByUid(String uid, HttpServletResponse response){
-		return this.setCookies("uid", crypt.encryptUid(uid), response);
+		String encryptedUid = crypt.encryptUid(uid);
+		response = this.setCookies("uid", encryptedUid, response);
+		return response; 
 	}
 	
 	private HttpServletResponse setCookies(String key, String value, HttpServletResponse response){

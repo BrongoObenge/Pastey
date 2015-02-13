@@ -19,14 +19,14 @@ public class SessionController {
 		if(uid != null){
 			//Cookies already exist
 			uid = crypt.decryptUid(uid);
-			this.setSessionByCookies(uid);
+			this.setSessionByUid(uid);
 			return true;
 		}else{
 			//not logged in
 			return false;
 		}
 	}
-	public void setSessionByCookies(String uid){
+	public void setSessionByUid(String uid){
 		User u = mysqlCon.getUserByUid(uid);
 		if(u != null){
 			sm.setSession(u.getUid(), u.getUsername(), u.getLastOnline(), u.getGroupId(), 
@@ -41,7 +41,8 @@ public class SessionController {
 		//Sets cookies
 		response = cm.setCookiesByUid(u.getUid(), response);
 		//Set Session
-		
+		sm.setSession(u.getUid(), u.getUsername(), u.getLastOnline(), u.getGroupId(), 
+				true, true);
 		return response;
 	}
 	

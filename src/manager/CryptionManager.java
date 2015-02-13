@@ -12,13 +12,17 @@ public class CryptionManager {
 	public CryptionManager(){
 		try{
 			crypt = new StrongTextEncryptor();
+			crypt.setPassword("nigglet");
 		}catch(Exception e){}
 	}
 	
 	public String encryptUid(String uid){
-		return crypt.encrypt(uid);
+		String a = crypt.encrypt(uid);
+		return a;
 	}
 	public String decryptUid(String uid){
-		return crypt.decrypt(uid);
+		StrongTextEncryptor crypt2 = new StrongTextEncryptor();
+		crypt2.setPassword("nigglet");
+		return crypt2.decrypt(uid);
 	}
 }
