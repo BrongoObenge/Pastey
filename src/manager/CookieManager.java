@@ -23,7 +23,7 @@ public class CookieManager {
 			for(Cookie cookie : cookies){
 			System.out.println(cookie.getName());
 		    if(cookie.getName().equals("uid"))
-		    	return cookie.getName();
+		    	return cookie.getValue();
 			}
 		}catch(Exception e){
 			return null;

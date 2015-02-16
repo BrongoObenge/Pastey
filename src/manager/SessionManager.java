@@ -19,5 +19,14 @@ public class SessionManager {
 		this.LOGGEDIN = loggedin;
 		this.COOKIES = cookies;
 	}
+	public void deleteSession(){
+		this.UID = null;
+		this.USERNAME = null;
+		this.LASTONLINE = null;
+		this.GROUPID = -1;
+		
+		this.LOGGEDIN = null;
+		this.COOKIES = null;
+	}
 	
 }

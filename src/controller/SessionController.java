@@ -18,6 +18,7 @@ public class SessionController {
 		String uid = cm.checkLogin(request);
 		if(uid != null){
 			//Cookies already exist
+			System.out.println("---" + uid);
 			uid = crypt.decryptUid(uid);
 			this.setSessionByUid(uid);
 			return true;

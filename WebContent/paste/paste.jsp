@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>index.jsp</h1>
-<a id="nav-button" href="./Paste">Paste</a>
-<a id="nav-button" href="./Image">Image</a>
-<h2></h2>
+PASTEJSP
 </body>
 </html>

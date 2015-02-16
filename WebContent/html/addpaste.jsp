@@ -7,9 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>index.jsp</h1>
-<a id="nav-button" href="./Paste">Paste</a>
-<a id="nav-button" href="./Image">Image</a>
-<h2></h2>
+<h1>Paste</h1>
+<h2>Paste your shit here.</h2>
+<form action="../Paste" method="POST">
+	Title:
+	<input type="text" name="title">
+		<br>
+	<textarea name="paste" style="width:640px; height:480px;">
+		
+	</textarea><br>
+	Password: 
+	<input type="text" name="password">
+		<br>
+	<input type="submit" name="submit">
+</form>
 </body>
 </html>

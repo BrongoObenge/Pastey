@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import manager.SessionManager;
-import controller.SessionController;
+import controller.PasteController;
 
 /**
  * Servlet implementation class Index
@@ -31,18 +30,24 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SessionController sc = new SessionController();
+//		SessionController sc = new SessionController();
+//		
+//		if(!SessionManager.LOGGEDIN)
+//			sc.checkLogin(request);
+//		
+//		if(SessionManager.LOGGEDIN){
+//			System.out.print("\n-------\nLOGGEDIN\n-----------");
+//			RequestDispatcher rd = request.getRequestDispatcher("/html/index.jsp");
+//			rd.forward(request, response);
+//		}else{
+//			RequestDispatcher rd = request.getRequestDispatcher("/html/Login.jsp");
+//			rd.forward(request, response);
+//		}
+		RequestDispatcher rd = request.getRequestDispatcher("/html/index.jsp");
+
 		
-		if(!SessionManager.LOGGEDIN)
-			sc.checkLogin(request);
-		
-		if(SessionManager.LOGGEDIN){
-			RequestDispatcher rd = request.getRequestDispatcher("/html/index.jsp");
-			rd.forward(request, response);
-		}else{
-			RequestDispatcher rd = request.getRequestDispatcher("/html/Login.jsp");
-			rd.forward(request, response);
-		}
+		rd.forward(request, response);
+
 	}
 
 	/**

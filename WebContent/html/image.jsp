@@ -7,9 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>index.jsp</h1>
-<a id="nav-button" href="./Paste">Paste</a>
-<a id="nav-button" href="./Image">Image</a>
-<h2></h2>
+<h1>Image</h1>
+<form>
+Upload image:<br>
+<input type="text" name="title">
+<br>
+<input type="file" name="image">
+<br>
+<input type="submit" name="submit">
+</form>
 </body>
 </html>

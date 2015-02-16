@@ -21,8 +21,6 @@ public class CryptionManager {
 		return a;
 	}
 	public String decryptUid(String uid){
-		StrongTextEncryptor crypt2 = new StrongTextEncryptor();
-		crypt2.setPassword("nigglet");
-		return crypt2.decrypt(uid);
+		return crypt.decrypt(uid);
 	}
 }
