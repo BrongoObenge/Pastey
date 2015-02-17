@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
+import javax.servlet.http.Part;
+
 import manager.MySqlManager;
 import model.Paste;
 import user.User;
@@ -60,7 +62,6 @@ public class MySqlController {
 		//Add password and do a check
 		String location = "";
 		String query = this.addPasteQueryBuilder(title, paste, password, timestamp);
-		System.out.println(query);
 		mysqlMan.addPaste(query);
 		//Select the just added paste (not working atm)
 		String selectQuery = this.selectPasteQueryBuilder(title, paste, password, timestamp);
@@ -122,7 +123,6 @@ public class MySqlController {
 	public ArrayList<Paste> getAllPastesLim20(){
 		ArrayList<Paste> pastes = new ArrayList<Paste>();
 		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" ORDER BY "+MySqlManager.PASTE_TABLE_TIMEADDED+" DESC LIMIT 20;";
-		System.out.println(query);
 		ResultSet rs = mysqlMan.executeQuery(query);
 		try {
 			rs.first();
@@ -143,7 +143,6 @@ public class MySqlController {
 	public ArrayList<Paste> getAllPastes(){
 		ArrayList<Paste> pastes = new ArrayList<Paste>();
 		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" ORDER BY "+MySqlManager.PASTE_TABLE_TIMEADDED+" DESC;";
-		System.out.println(query);
 		ResultSet rs = mysqlMan.executeQuery(query);
 		try {
 			rs.first();
@@ -164,7 +163,6 @@ public class MySqlController {
 	public ArrayList<model.Paste> getPasteById(String id){
 		ArrayList<Paste> pastes = new ArrayList<Paste>();
 		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" WHERE idpaste = "+Integer.parseInt(id)+" LIMIT 20;";
-		System.out.println(query);
 		ResultSet rs = mysqlMan.executeQuery(query);
 		try {
 			rs.first();
@@ -180,5 +178,43 @@ public class MySqlController {
 		}
 		return pastes;
 	}
+	public String addImageQueryBuilder(String title, String password, String imageLocation, String timestamp){
+		String insert = "INSERT INTO "+MySqlManager.IMAGE_TABLE+" (";
+		String values = "VALUES (";
+		if(title.length() >= 1){
+			insert += "`"+MySqlManager.IMAGE_TABLE_NAME+"`, ";
+			values += "\""+title+"\", ";
+		}
+		if(password.length() >= 1){
+			insert += "`"+MySqlManager.IMAGE_TABLE_PASSWORD+"`, ";
+			values += "\""+password+"\", ";
+		}
+		if(imageLocation.length() >= 1){
+			insert += "`"+MySqlManager.IMAGE_TABLE_LOCATION+"`, ";
+			values += "\""+imageLocation+"\", ";
+		}
+		insert += "`"+MySqlManager.IMAGE_TABLE_TIMEADDED+"`) ";
+		values += "\""+timestamp.toString()+"\");";
+		
+		insert += values;
+		return insert;
+	}
+	public void insertImage(String title, String password, String imageLocation, String timestamp){
+		String query = this.addImageQueryBuilder(title, password, imageLocation, timestamp);
+		System.out.println(query);
+		mysqlMan.executeQuery(query);
+	}
+	public String getNewImageLocation(String location){
+		ResultSet rs = mysqlMan.executeQuery("SELECT MAX(idimage) FROM binit.image;");
+		try{
+			rs.first();
+			location = location + Integer.toString(rs.getInt(1)+1);
+		}catch(Exception e){
+			//Null
+			location = location + Integer.toString(1);
+		}
+		return location;
+	}
+	
 	
 }

@@ -5,8 +5,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="/path/to/styles/default.css">
-<script src="/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="../highlight/github.css">
+<script src="../highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -29,7 +29,7 @@
 			
 			<h1><%= p.getTitle() %></h1>
 			<h5>Added time: <%=p.getTime()%></h5>
-			<br><br>
+			<br>
 			<%=p.getText().replace("\n", "<br>") %>
 			<br><br><br>
 			<b>Raw:</b><br>

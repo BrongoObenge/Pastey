@@ -13,6 +13,8 @@
 	Title:
 	<input type="text" name="title">
 		<br>
+	Code?
+	<input type="checkbox" name="code">
 	<textarea name="paste" style="width:640px; height:480px;"></textarea>
 	<br>
 	Password: 

@@ -38,11 +38,9 @@ public class p extends HttpServlet {
 			ArrayList<model.Paste> paste = pastey.getPasteById(request.getParameter("paste"));
 			RequestDispatcher rd = request.getRequestDispatcher("/html/p.jsp");
 			request.setAttribute("paste", paste);
-			System.out.println(paste.size());
 			rd.forward(request, response);
 		}else{
 			response.sendRedirect("./Paste");
-			System.out.println("Paste null");
 		}
 	}
 
@@ -50,16 +48,13 @@ public class p extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("p POST");
 		String title = (String) request.getParameter("title");
 		String content = (String) request.getParameter("content");
 		
-		System.out.println(title);
-		System.out.println(content);
 		//Send to pastebin
 		PastebinController pastebin = new PastebinController();
 		URL url = pastebin.pastebin(title, content);
-		System.out.println(url);
+		
 		//Redirect to paste
 		response.sendRedirect(url.toString());
 	}

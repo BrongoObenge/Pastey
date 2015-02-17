@@ -8,13 +8,6 @@
 </head>
 <body>
 <h1>Image</h1>
-<form>
-Upload image:<br>
-<input type="text" name="title">
-<br>
-<input type="file" name="image">
-<br>
-<input type="submit" name="submit">
-</form>
+<a id="nav-button" href="html/addimage.jsp">Add image</a>
 </body>
 </html>

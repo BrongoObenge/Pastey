@@ -54,12 +54,11 @@ public class Paste extends HttpServlet {
 		try{
 			paste = (String) request.getParameter("paste");
 			paste = paste.replaceAll("\"", "'");
-			System.out.println(paste);
 			}catch(Exception e){}
 		try{password = (String) request.getParameter("password");}catch(Exception e){}
 		
 			if(request.getParameter("code") != null){				
-				paste = "<pre><code>" + paste + "</pre></code>";
+				paste = "<pre><code class='html'>" + paste + "</pre></code>";
 			}
 		
 	

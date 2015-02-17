@@ -12,13 +12,22 @@ public class MySqlManager {
 	private String USER = "user1";
 	private String PASSWORD = "user1";
 	
-	public static String PASTE_TABLE = "binit.paste";
+	public static String SCHEMA = "binit";
+	
+	public static String PASTE_TABLE = SCHEMA + ".paste";
 	public static String PASTE_TABLE_PASTEID = "idpaste";
 	public static String PASTE_TABLE_USERID = "iduser";
 	public static String PASTE_TABLE_NAME = "name";
 	public static String PASTE_TABLE_PASSWORD = "password";
 	public static String PASTE_TABLE_TEXT = "text";
 	public static String PASTE_TABLE_TIMEADDED = "timeadded";
+	
+	public static String IMAGE_TABLE = SCHEMA + ".image";
+	public static String IMAGE_TABLE_IMAGEID = "idimage";
+	public static String IMAGE_TABLE_NAME = "name";
+	public static String IMAGE_TABLE_PASSWORD = "password";
+	public static String IMAGE_TABLE_LOCATION = "location";
+	public static String IMAGE_TABLE_TIMEADDED = "timeadded";
 	
 	public Connection openDb(){
 		try {
@@ -67,4 +76,5 @@ public class MySqlManager {
 	public ResultSet addPaste(String query){
 		 return this.executeQuery(query);
 	}
+
 }
