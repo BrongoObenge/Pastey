@@ -59,8 +59,9 @@ public class MySqlController {
 	public String addPaste(String title, String paste, String password, Timestamp timestamp){
 		//Add password and do a check
 		String location = "";
-		
-		mysqlMan.addPaste(this.addPasteQueryBuilder(title, paste, password, timestamp));
+		String query = this.addPasteQueryBuilder(title, paste, password, timestamp);
+		System.out.println(query);
+		mysqlMan.addPaste(query);
 		//Select the just added paste (not working atm)
 		String selectQuery = this.selectPasteQueryBuilder(title, paste, password, timestamp);
 		ResultSet rs = mysqlMan.executeQuery(selectQuery);
@@ -118,7 +119,7 @@ public class MySqlController {
 	private void getPasteId(){
 		
 	}
-	public ArrayList<Paste> getAllPastes(){
+	public ArrayList<Paste> getAllPastesLim20(){
 		ArrayList<Paste> pastes = new ArrayList<Paste>();
 		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" ORDER BY "+MySqlManager.PASTE_TABLE_TIMEADDED+" DESC LIMIT 20;";
 		System.out.println(query);
@@ -139,7 +140,27 @@ public class MySqlController {
 		}
 		return pastes;
 	}
-	
+	public ArrayList<Paste> getAllPastes(){
+		ArrayList<Paste> pastes = new ArrayList<Paste>();
+		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" ORDER BY "+MySqlManager.PASTE_TABLE_TIMEADDED+" DESC;";
+		System.out.println(query);
+		ResultSet rs = mysqlMan.executeQuery(query);
+		try {
+			rs.first();
+			do{
+				Paste p = new Paste();
+				p.setId(rs.getInt("idpaste"));
+				p.setTitle(rs.getString("name"));
+				p.setPassword(rs.getString("password"));
+				p.setText(rs.getString("text"));
+				p.setTime(rs.getString("timeadded"));
+				pastes.add(p);
+			}while(rs.next());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pastes;
+	}
 	public ArrayList<model.Paste> getPasteById(String id){
 		ArrayList<Paste> pastes = new ArrayList<Paste>();
 		String query = "SELECT * FROM "+MySqlManager.PASTE_TABLE+" WHERE idpaste = "+Integer.parseInt(id)+" LIMIT 20;";

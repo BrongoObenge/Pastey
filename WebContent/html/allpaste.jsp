@@ -7,18 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Paste</h1>
-<h2>Paste your shit here.</h2>
-<form action="../Paste" method="POST">
-	Title:
-	<input type="text" name="title">
-		<br>
-	<textarea name="paste" style="width:640px; height:480px;"></textarea>
-	<br>
-	Password: 
-	<input type="text" name="password">
-		<br>
-	<input type="submit" name="submit">
-</form>
+<h1>All pastes</h1>
 </body>
 </html>

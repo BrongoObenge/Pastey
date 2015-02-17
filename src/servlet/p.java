@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.PasteController;
+import controller.PastebinController;
 
 /**
  * Servlet implementation class p
@@ -48,7 +50,18 @@ public class p extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("p POST");
+		String title = (String) request.getParameter("title");
+		String content = (String) request.getParameter("content");
+		
+		System.out.println(title);
+		System.out.println(content);
+		//Send to pastebin
+		PastebinController pastebin = new PastebinController();
+		URL url = pastebin.pastebin(title, content);
+		System.out.println(url);
+		//Redirect to paste
+		response.sendRedirect(url.toString());
 	}
 
 }

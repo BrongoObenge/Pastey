@@ -15,6 +15,7 @@
 </head>
 <body>
 <a id="nav-button" href="html/addpaste.jsp">Add new paste</a>
+<a id="nav-button" href="ap">Show all pastes</a>
 <h1>Paste</h1>
 <table>
 <% for(Paste p : pastes){ %>

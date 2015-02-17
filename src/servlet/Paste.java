@@ -31,10 +31,8 @@ public class Paste extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("null");
 		PasteController pastey = new PasteController();
-		ArrayList<model.Paste> pastes = pastey.getAllPastes();
+		ArrayList<model.Paste> pastes = pastey.getAllPastesLim20();
 
 		RequestDispatcher rd  = request.getRequestDispatcher("/html/paste.jsp");
 		request.setAttribute("paste", pastes);
@@ -53,11 +51,20 @@ public class Paste extends HttpServlet {
 		String password = "";
 		
 		try{title = (String) request.getParameter("title");}catch(Exception e){}
-		try{paste = (String) request.getParameter("paste");}catch(Exception e){}
+		try{
+			paste = (String) request.getParameter("paste");
+			paste = paste.replaceAll("\"", "'");
+			System.out.println(paste);
+			}catch(Exception e){}
 		try{password = (String) request.getParameter("password");}catch(Exception e){}
 		
+			if(request.getParameter("code") != null){				
+				paste = "<pre><code>" + paste + "</pre></code>";
+			}
+		
+	
 		PasteController pastey = new PasteController();
-		//Get paste ID
+		//Get paste ID and redirect
 
 		String location = pastey.addPaste(title, paste, password);
 //		System.out.println("Paste");

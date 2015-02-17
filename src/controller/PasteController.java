@@ -13,9 +13,14 @@ public class PasteController {
 		return mysqlCon.addPaste(title, paste, password, time.getTimestamp());
 	}
 	
+	public ArrayList<Paste> getAllPastesLim20(){
+		return mysqlCon.getAllPastesLim20();
+	}
+	
 	public ArrayList<Paste> getAllPastes(){
 		return mysqlCon.getAllPastes();
 	}
+	
 	public ArrayList<model.Paste> getPasteById(String id){
 		return mysqlCon.getPasteById(id);
 	}
